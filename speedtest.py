@@ -27,4 +27,4 @@ df = pd.DataFrame(data=d)
 #print(df)
 
 #WRITE to CSV
-df.to_csv('C:\Program Files\ookla-speedtest-1.0.0-win64\speed.csv', mode="a", sep='\t', index=False, header=False)
+df.to_csv('C:\Program Files\ookla-speedtest-1.0.0-win64\speed.csv', mode="a", index=False, header=False)
