@@ -9,36 +9,41 @@ import plotly.graph_objects as go
 #IMPORT CSV + PARSE Data & Time
 df = pd.read_csv('C:\Program Files\ookla-speedtest-1.0.0-win64\speed.csv', parse_dates=[['Date', 'Time']])
 
-#TRIM last 24hours
-now = datetime.now().replace(microsecond=0)
-then = timedelta(days=1)
-ab = df[df.Date_Time >= (now - then)]
+def main():
 
-#PLOT "To this Day"
-df.plot(x = 'Date_Time', y = ['Download', 'Upload'], figsize=(15 ,8), grid = True)
+    #TRIM last 24hours
+    now = datetime.now().replace(microsecond=0)
+    then = timedelta(days=1)
+    ab = df[df.Date_Time >= (now - then)]
 
-#PLOT "Last 24hours"
-#ab.plot(x = 'Date_Time', y = ['Download', 'Upload'], figsize=(15 ,8), grid = True)
+    #PLOT "To this Day"
+    df.plot(x = 'Date_Time', y = ['Download', 'Upload'], figsize=(15 ,8), grid = True)
 
-#LABELS
-plt.xlabel('Date & Time')
-plt.ylabel('Mb/per Sec.')
-plt.title('Videotron - Download & Upload Bandwidth')
+    #PLOT "Last 24hours"
+    #ab.plot(x = 'Date_Time', y = ['Download', 'Upload'], figsize=(15 ,8), grid = True)
 
-#OUTPUT
-#plt.show()
+    #LABELS
+    plt.xlabel('Date & Time')
+    plt.ylabel('Mb/per Sec.')
+    plt.title('Videotron - Download & Upload Bandwidth')
 
-fig = go.Figure()
+    #OUTPUT
+    #plt.show()
 
-fig.add_trace(go.Scatter(x = df.Date_Time, y = df.Download, name = 'Download', line=dict(color = 'royalblue'))),
-fig.add_trace(go.Scatter(x = df.Date_Time, y = df.Upload, name = 'Upload', line=dict(color = 'orange')))
+    fig = go.Figure()
 
-#fig = px.line(ab, x = 'Date_Time', y = 'Download', title= 'test')
+    fig.add_trace(go.Scatter(x = df.Date_Time, y = df.Download, name = 'Download', line=dict(color = 'royalblue'))),
+    fig.add_trace(go.Scatter(x = df.Date_Time, y = df.Upload, name = 'Upload', line=dict(color = 'orange')))
 
-fig.update_layout(title='Videotron - Download & Upload Bandwidth',
-                   xaxis_title='Date & Time',
-                   yaxis_title='Mb/per Sec.')
+    #fig = px.line(ab, x = 'Date_Time', y = 'Download', title= 'test')
 
-fig.show()
+    fig.update_layout(title='Videotron - Download & Upload Bandwidth',
+                    xaxis_title='Date & Time',
+                    yaxis_title='Mb/per Sec.')
 
-#fig.write_html("report.html")
+    fig.show()
+
+    #fig.write_html("report.html")
+
+if __name__ == "__main__":
+    main()
