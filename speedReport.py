@@ -43,7 +43,7 @@ def main():
 
     fig.show()
 
-    #fig.write_html("report.html")
+    #fig.write_html("../report.html")
 
 if __name__ == "__main__":
     main()
